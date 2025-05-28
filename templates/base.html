@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}TCG Site{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+    <nav>
+        {% if session.get('user_id') %}
+        <a href="{{ url_for('collection') }}">Collection</a>
+        <a href="{{ url_for('pack') }}">Pack</a>
+        {% if session.get('is_admin') %}
+        <a href="{{ url_for('admin') }}">Admin</a>
+        {% endif %}
+        <a href="{{ url_for('logout') }}">Déconnexion ({{ session.get('username') }})</a>
+        {% else %}
+        <a href="{{ url_for('login') }}">Connexion</a>
+        <a href="{{ url_for('register') }}">Inscription</a>
+        {% endif %}
+    </nav>
+
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

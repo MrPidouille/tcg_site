@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Ma Collection{% endblock %}
+{% block content %}
+<h2>Ma Collection</h2>
+{% if user_cards %}
+<table>
+    <thead>
+        <tr>
+            <th>Carte</th>
+            <th>Édition</th>
+            <th>Rareté</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for c in user_cards %}
+        <tr>
+            <td>{{ c['name'] }}</td>
+            <td>{{ c['edition'] }}</td>
+            <td>{{ c['rarity'] }}</td>
+            <td>{{ c['price'] }} crédits</td>
+            <td>{{ c['quantity'] }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Tu n'as aucune carte pour le moment.</p>
+{% endif %}
+{% endblock %}

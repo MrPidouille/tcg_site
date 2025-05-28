@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Pack{% endblock %}
+{% block content %}
+<h2>Ajouter une carte obtenue</h2>
+<form method="POST">
+    <label for="card">Choisis une carte :</label>
+    <select name="card" id="card" required>
+        {% for card in cards %}
+        <option value="{{ card.id }}">{{ card.name }} - Édition: {{ card.edition }} - Rareté: {{ card.rarity }}</option>
+        {% endfor %}
+    </select>
+    <label for="quantity">Quantité :</label>
+    <input type="number" name="quantity" id="quantity" value="1" min="1" max="10" />
+    <button class="btn">Valider</button>
+</form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Inscription{% endblock %}
+{% block content %}
+<h2>Inscription</h2>
+<form method="POST">
+    <input type="text" name="username" placeholder="Nom d'utilisateur" required />
+    <input type="password" name="password" placeholder="Mot de passe" required />
+    <button class="btn">S'inscrire</button>
+</form>
+<p>Déjà un compte ? <a href="{{ url_for('login') }}">Connecte-toi</a></p>
+{% endblock %}

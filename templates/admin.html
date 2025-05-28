@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Administration{% endblock %}
+{% block content %}
+<h2>Ajouter une carte</h2>
+<form method="POST">
+    <input type="text" name="name" placeholder="Nom de la carte" required />
+    <input type="text" name="edition" placeholder="Édition" required />
+    <input type="text" name="rarity" placeholder="Rareté (ex: Commune, Rare, Épique)" required />
+    <input type="number" name="price" placeholder="Prix en crédits" min="0" required />
+    <button class="btn">Ajouter la carte</button>
+</form>
+
+<h3>Cartes existantes</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th><th>Édition</th><th>Rareté</th><th>Prix</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for card in cards %}
+        <tr>
+            <td>{{ card['name'] }}</td>
+            <td>{{ card['edition'] }}</td>
+            <td>{{ card['rarity'] }}</td>
+            <td>{{ card['price'] }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
